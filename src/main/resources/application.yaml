@@ -1,3 +1,12 @@
 app:
   accessToken: 6913d52a0cf62d2708dbc8ec821acf1d5bd03f42222e304f54b2cb89388b432131afa5115f2d87958d41e
   groupId: 205095138
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.99.100:5432/botdb
+    username: postgres
+    password: test
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
