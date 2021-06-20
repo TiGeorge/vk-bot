@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
+import com.example.vkbot.services.KeyboardService;
 import com.vk.api.sdk.actions.Messages;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
@@ -22,6 +23,7 @@ class CallbackHandlerTest {
   @Mock private VkApiClient client;
   @Mock private GroupActor actor;
   @Mock private Messages messages;
+  @Mock private KeyboardService keyboardService;
   @Mock private MessagesSendQueryWithUserIds messagesSendQueryWithUserIds;
   @Captor private ArgumentCaptor<String> stringCaptor;
 
@@ -40,7 +42,7 @@ class CallbackHandlerTest {
     message.setFromId(111);
     message.setText("Some text");
 
-    CallbackHandler sut = new CallbackHandler(client, actor);
+    CallbackHandler sut = new CallbackHandler(client, actor, keyboardService);
 
     // Act
     sut.messageNew(777, message);
