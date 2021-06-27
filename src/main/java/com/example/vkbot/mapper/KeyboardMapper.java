@@ -1,4 +1,4 @@
-package com.example.vkbot.mappers;
+package com.example.vkbot.mapper;
 
 import com.example.vkbot.model.Button;
 import com.vk.api.sdk.objects.messages.Keyboard;

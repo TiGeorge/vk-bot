@@ -1,10 +1,10 @@
-package com.example.vkbot.handlers;
+package com.example.vkbot.handler;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
-import com.example.vkbot.services.KeyboardService;
+import com.example.vkbot.service.KeyboardService;
 import com.vk.api.sdk.actions.Messages;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;

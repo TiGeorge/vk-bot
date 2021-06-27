@@ -1,6 +1,6 @@
 package com.example.vkbot.config;
 
-import com.example.vkbot.handlers.CallbackHandler;
+import com.example.vkbot.handler.CallbackHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

@@ -14,11 +14,13 @@ CREATE TABLE communities
 
 CREATE TABLE actions
 (
-    id      BIGINT PRIMARY KEY,
-    type    VARCHAR(50) NOT NULL,
-    label   VARCHAR(50) NOT NULL,
-    link    VARCHAR(150),
-    payload VARCHAR
+    id               BIGINT PRIMARY KEY,
+    type             VARCHAR(50) NOT NULL,
+    label            VARCHAR(50) NOT NULL,
+    link             VARCHAR(150),
+    payload          VARCHAR,
+    link_keyboard_id BIGINT,
+    CONSTRAINT actions_fk_link_keyboard FOREIGN KEY (link_keyboard_id) REFERENCES keyboards (id)
 );
 
 CREATE TABLE buttons

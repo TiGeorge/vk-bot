@@ -1,4 +1,4 @@
-package com.example.vkbot.repositories;
+package com.example.vkbot.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

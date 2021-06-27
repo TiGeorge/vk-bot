@@ -1,4 +1,4 @@
-package com.example.vkbot.repositories;
+package com.example.vkbot.repository;
 
 import com.example.vkbot.model.Community;
 import org.springframework.data.jpa.repository.JpaRepository;

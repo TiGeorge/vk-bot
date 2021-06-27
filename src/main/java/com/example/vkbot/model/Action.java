@@ -25,4 +25,8 @@ public class Action {
   private String link;
 
   private String payload;
+
+  @ManyToOne
+  @JoinColumn(name = "link_keyboard_id")
+  private Keyboard linkKeyboard;
 }
