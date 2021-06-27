@@ -2,10 +2,9 @@ package com.example.vkbot.dto;
 
 import com.vk.api.sdk.objects.messages.KeyboardButtonColor;
 import lombok.Data;
-import org.springframework.hateoas.RepresentationModel;
 
 @Data
-public class ButtonDto extends RepresentationModel<ButtonDto> {
+public class ButtonDto {
 
   private Long id;
   private KeyboardButtonColor color;

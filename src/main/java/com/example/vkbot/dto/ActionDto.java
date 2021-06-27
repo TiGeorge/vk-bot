@@ -2,10 +2,9 @@ package com.example.vkbot.dto;
 
 import com.vk.api.sdk.objects.messages.TemplateActionTypeNames;
 import lombok.Data;
-import org.springframework.hateoas.RepresentationModel;
 
 @Data
-public class ActionDto extends RepresentationModel<ActionDto> {
+public class ActionDto{
 
   private Long id;
   private TemplateActionTypeNames type;

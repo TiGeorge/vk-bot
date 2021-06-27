@@ -1,12 +1,16 @@
 package com.example.vkbot.service;
 
+import com.example.vkbot.dto.ButtonDto;
 import com.example.vkbot.dto.KeyboardDto;
+import com.example.vkbot.mapper.ButtonDtoMapper;
 import com.example.vkbot.mapper.KeyboardDtoMapper;
 import com.example.vkbot.mapper.KeyboardMapper;
 import com.example.vkbot.model.Community;
 import com.example.vkbot.repository.CommunityRepo;
 import com.example.vkbot.repository.KeyboardRepo;
 import com.vk.api.sdk.objects.messages.Keyboard;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,7 @@ public class KeyboardServiceImpl implements KeyboardService {
   private final CommunityRepo communityRepo;
   private final KeyboardMapper keyboardMapper;
   private final KeyboardDtoMapper keyboardDtoMapper;
+  private final ButtonDtoMapper buttonDtoMapper;
 
   @Override
   public Keyboard findKeyboardForCommunity(int communityId) {
@@ -36,25 +41,33 @@ public class KeyboardServiceImpl implements KeyboardService {
   @Override
   public KeyboardDto createKeyboard(KeyboardDto newKeyboard) {
     newKeyboard.setId(null);
-    com.example.vkbot.model.Keyboard keyboard = keyboardDtoMapper.keyboardDtoToEntity(newKeyboard);
+    var keyboard = keyboardDtoMapper.keyboardDtoToEntity(newKeyboard);
     keyboard = keyboardRepo.save(keyboard);
     return keyboardDtoMapper.keyboardToDto(keyboard);
   }
 
   @Override
   public KeyboardDto getKeyboardById(Long id) {
-    com.example.vkbot.model.Keyboard keyboard = keyboardRepo.findById(id).orElseThrow();
+    var keyboard = keyboardRepo.findById(id).orElseThrow();
     return keyboardDtoMapper.keyboardToDto(keyboard);
   }
 
   @Override
   public void updateKeyboard(KeyboardDto keyboardDto) {
-    com.example.vkbot.model.Keyboard keyboard = keyboardDtoMapper.keyboardDtoToEntity(keyboardDto);
+    var keyboard = keyboardDtoMapper.keyboardDtoToEntity(keyboardDto);
     keyboardRepo.save(keyboard);
   }
 
   @Override
   public void deleteKeyboard(Long id) {
     keyboardRepo.deleteById(id);
+  }
+
+  @Override
+  public List<ButtonDto> getButtonsForKeyboard(Long id) {
+    var keyboard = keyboardRepo.findById(id).orElseThrow();
+    return keyboard.getButtons().stream()
+        .map(buttonDtoMapper::entityToDto)
+        .collect(Collectors.toList());
   }
 }

@@ -21,6 +21,4 @@ public class Keyboard {
   private Boolean oneTime;
 
   private Boolean inline;
-
-  private String name;
 }
