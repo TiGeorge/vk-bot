@@ -2,3 +2,23 @@ app:
   autorunHandler: true
   accessToken: 6913d52a0cf62d2708dbc8ec821acf1d5bd03f42222e304f54b2cb89388b432131afa5115f2d87958d41e
   groupId: 205095138
+server:
+  port: 8081
+kafka:
+  requestTopic: keybordId
+  replyTopic: keyboard
+  groupId: keyboardId-keyboard-group
+spring:
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      enable-auto-commit: true
+      auto-offset-reset: earliest
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+

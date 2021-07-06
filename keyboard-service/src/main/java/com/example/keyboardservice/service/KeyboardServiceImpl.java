@@ -13,6 +13,8 @@ import com.vk.api.sdk.objects.messages.Keyboard;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +28,8 @@ public class KeyboardServiceImpl implements KeyboardService {
   private final ButtonDtoMapper buttonDtoMapper;
 
   @Override
+  @KafkaListener(topics = "findKeyboardForCommunity", groupId = "keyboardId-keyboard-group")
+  @SendTo
   public Keyboard findKeyboardForCommunity(int communityId) {
     return communityRepo
         .findById(communityId)
@@ -35,6 +39,8 @@ public class KeyboardServiceImpl implements KeyboardService {
   }
 
   @Override
+  @KafkaListener(topics = "findKeyboardById", groupId = "keyboardId-keyboard-group")
+  @SendTo
   public Keyboard findKeyboardById(Long id) {
     return keyboardRepo.findById(id).map(keyboardMapper::keyboardToVkKeyboard).orElseThrow();
   }

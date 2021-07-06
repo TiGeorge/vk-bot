@@ -11,3 +11,10 @@ spring:
     schemas: public
     locations: classpath:db/migration
     baseline-on-migrate: true
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      enable-auto-commit: true
+      auto-offset-reset: earliest

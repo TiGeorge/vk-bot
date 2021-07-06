@@ -8,6 +8,7 @@ import com.vk.api.sdk.objects.messages.Keyboard;
 import com.vk.api.sdk.objects.messages.Message;
 import java.math.BigInteger;
 import java.util.LinkedHashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +37,7 @@ public class CallbackHandler extends CallbackApiLongPoll {
     sendMessage(message.getFromId(), message.getText(), keyboard);
   }
 
-  private Keyboard getKeyboard(Message message) throws ParseException {
+  private Keyboard getKeyboard(Message message) throws ParseException, ExecutionException, InterruptedException {
     if (message.getPayload() != null) {
       JSONParser jsonParser = new JSONParser(message.getPayload());
       LinkedHashMap<String, Object> map = (LinkedHashMap<String, Object>) jsonParser.parse();
